@@ -1,10 +1,12 @@
 def judge_prime_composite(i, prime, composite):
+    if i <= 1:
+        return
     flag = True
     for j in range(2, i):
         if i % j == 0:
             flag = False
             break
-    if flag and i != 1:
+    if flag:
         prime.append(i)
     else:
         composite.append(i)
