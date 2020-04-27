@@ -35,9 +35,9 @@ def draw_function(mean, std):
 
 def main():
     print('请输入正态分布的均值')
-    mean = int(input('mean:'))
+    mean = float(input('mean:'))
     print('请输入正态分布的方差')
-    std = int(input('std:'))
+    std = float(input('std:'))
     draw_function(mean, std)
 
 
