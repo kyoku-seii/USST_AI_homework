@@ -52,7 +52,6 @@ def show_information():
 
 
 def show_picture(net):
-    n = net.hidden_size
     x = np.arange(-12, 12, 1)
     h1 = []
     h2 = []
