@@ -1,6 +1,3 @@
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 from layers import *
 from collections import OrderedDict
 from optimizer import *
@@ -37,7 +34,7 @@ class TwoLayFNN:
         grads = {'W1': self.layers['lay1'].dw, 'W2': self.layers['lay2'].dw}
         return grads
 
-    def train(self, x, t, batch_size=100, learning_rate=0.1, epoch=10, optimizer='SGD', m=0.9):
+    def train(self, x, t, batch_size=10, learning_rate=0.1, epoch=10, optimizer='SGD', m=0.9):
         iter_per_epoch = int(x.shape[0] / batch_size)
         cur_epoch = 0
         while cur_epoch < epoch:

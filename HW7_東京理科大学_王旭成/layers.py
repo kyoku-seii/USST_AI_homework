@@ -1,6 +1,26 @@
 import numpy as np
 
 
+def cross_entropy_error(y, t):
+    if y.ndim == 1:
+        t = t.reshape(1, t.size)
+        y = y.reshape(1, y.size)
+
+    batch_size = y.shape[0]
+    return -np.sum(t * np.log(y + 1e-7)) / batch_size
+
+
+def softmax(x):
+    if x.ndim == 2:
+        x = x.T
+        x = x - np.max(x, axis=0)
+        y = np.exp(x) / np.sum(np.exp(x), axis=0)
+        return y.T
+
+    x = x - np.max(x)
+    return np.exp(x) / np.sum(np.exp(x))
+
+
 class Layer(object):
     def __init__(self, W):
         self.W = W
@@ -46,17 +66,29 @@ class MseLoss(object):
     def forward(self, x, t):
         self.t = t
         self.y = x
-        self.loss = np.mean((self.t-self.y)**2)
+        self.loss = np.mean((self.t - self.y) ** 2)
         return self.loss
 
     def backward(self, dout=1):
-        dx = -2*(self.t-self.y)/self.t.shape[0]
+        dx = -2 * (self.t - self.y) / self.t.shape[0]
         return dx
 
 
+class SoftmaxWithLoss:
+    def __init__(self):
+        self.loss = None
+        self.y = None
+        self.t = None
 
+    def forward(self, x, t):
+        self.t = t
+        self.y = softmax(x)
+        self.loss = cross_entropy_error(self.y, self.t)
 
+        return self.loss
 
+    def backward(self, dout=1):
+        batch_size = self.t.shape[0]
+        dx = (self.y - self.t) / batch_size
 
-
-
+        return dx
