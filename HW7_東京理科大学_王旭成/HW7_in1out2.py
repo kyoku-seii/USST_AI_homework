@@ -8,7 +8,7 @@ data = df.iloc[:, 0].values.reshape(-1, 1)
 t = df.iloc[:, 1:].values
 # 取出了所有的数据与标签
 # 1-10-2
-twolayFNN_M = TwoLayFNN(input_size=1, hidden_size=10, output_size=2)
+twolayFNN_M = TwoLayFNN(input_size=1, hidden_size=6, output_size=2)
 twolayFNN_M.train(data, t, epoch=30, batch_size=20, optimizer='Momentum', m=0.9)
 
 plt.figure()
