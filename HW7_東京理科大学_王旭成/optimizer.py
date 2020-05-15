@@ -28,7 +28,7 @@ class Momentum:
 
 
 class AdaGrad:
-    def __init__(self, lr=0.01):
+    def __init__(self, lr=0.1):
         self.lr = lr
         self.h = None
 

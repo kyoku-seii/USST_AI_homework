@@ -8,8 +8,8 @@ def draw_picture(model_name, mse, data, t, twolayFnn):
     plt.title(model_name)
     plt.xlabel('X')
     plt.ylabel('T')
-    plt.scatter(data.reshape(1, -1), t.reshape(1, -1), c='blue')
-    plt.scatter(data.reshape(1, -1), twolayFnn.predict(data).reshape(1, -1), c='orange')
+    plt.scatter(data.reshape(1, -1), t.reshape(1, -1), c='blue',s=3)
+    plt.scatter(data.reshape(1, -1), twolayFnn.predict(data).reshape(1, -1), c='orange',s=3)
     plt.text(-10, 3, 'MSE : error' + mse[0:5])
     plt.savefig(model_name + '_result.png')
 
