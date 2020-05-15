@@ -25,7 +25,7 @@ t_train = t[0:800]
 x_test = data[800:]
 t_test = t[800:]
 # 1-5-1结构,训练30个epoch,每次抓20笔数据
-twolayFNN = TwoLayFNN(input_size=1, hidden_size=5, output_size=1)
+twolayFNN = TwoLayFNN(input_size=1, hidden_size=3, output_size=1)
 twolayFNN.train(x_train, t_train, epoch=30, batch_size=20, optimizer='SGD')
 mse = str(twolayFNN.loss(x_test, t_test))
 print('在未知测试数据中的表现 : ')
